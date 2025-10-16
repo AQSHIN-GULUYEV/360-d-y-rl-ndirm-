@@ -1,71 +1,47 @@
-<div class="container">
-    <header>
-        <h1>🏢 360° Performans Dəyərləndirmə Sistemi</h1>
-        <p class="subtitle">Peşəkar İnkişaf Proqramı - 2025</p>
-    </header>
-
-    <form id="evalForm">
-        <section class="info-section">
-            <div class="input-group">
-                <label>👤 Dəyərləndirilən Şəxs</label>
-                <input type="text" id="personName" required>
-            </div>
-            <div class="input-group">
-                <label>🆔 Dəyərləndirən (Anonim)</label>
-                <input type="text" id="evaluatorName" placeholder="Anonim">
-            </div>
-            <div class="input-group">
-                <label>🎭 Rol</label>
-                <select id="evaluatorRole" required>
-                    <option value="">Seçin</option>
-                    <option>Rəhbər</option>
-                    <option>Həmkar</option>
-                    <option>Tabe İşçi</option>
-                    <option>Müştəri</option>
-                </select>
-            </div>
-            <div class="input-group">
-                <label>📅 Dövr</label>
-                <input type="text" id="period" value="2025-ci il" required>
-            </div>
-        </section>
-
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>360° Performans Dəyərləndirmə Sistemi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>360° Performans Dəyərləndirmə Sistemi</h1>
+        <div class="input-section">
+            <label for="name">Ad və Soyad:</label>
+            <input type="text" id="name" placeholder="Adınızı daxil edin">
+            <label for="role">Rolu:</label>
+            <select id="role">
+                <option value="leader">Rəhbər</option>
+                <option value="colleague">Həmkar</option>
+                <option value="subordinate">Alt</option>
+            </select>
+        </div>
         <section class="table-section">
             <table>
                 <thead>
                     <tr><th>Kateqoriya</th><th>⭐ Bal (1-5)</th><th>📝 Şərh</th></tr>
                 </thead>
                 <tbody>
-                    <tr><td>💬 Kommunikasiya</td><td><select class="score"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></td><td><textarea rows="2"></textarea></td></tr>
-                    <tr><td>👑 Liderlik</td><td><select class="score"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></td><td><textarea rows="2"></textarea></td></tr>
-                    <tr><td>🤝 Əməkdaşlıq</td><td><select class="score"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></td><td><textarea rows="2"></textarea></td></tr>
-                    <tr><td>💼 Peşəkarlıq</td><td><select class="score"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></td><td><textarea rows="2"></textarea></td></tr>
-                    <tr><td>🎯 Nəticələr</td><td><select class="score"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></td><td><textarea rows="2"></textarea></td></tr>
-                    <tr><td>⚡ Adaptasiya</td><td><select class="score"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></td><td><textarea rows="2"></textarea></td></tr>
-                    <tr><td>⚖️ Etika</td><td><select class="score"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></td><td><textarea rows="2"></textarea></td></tr>
+                    <tr><td>💬 Kommunikasiya</td><td><select class="score"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select></td><td><textarea rows="2"></textarea></td></tr>
+                    <tr><td>👑 Liderlik</td><td><select class="score"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select></td><td><textarea rows="2"></textarea></td></tr>
+                    <tr><td>🤝 Əməkdaşlıq</td><td><select class="score"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select></td><td><textarea rows="2"></textarea></td></tr>
+                    <tr><td>💼 Peşəkarlıq</td><td><select class="score"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select></td><td><textarea rows="2"></textarea></td></tr>
                 </tbody>
             </table>
         </section>
-
-        <section class="comments-section">
-            <label>💡 Ümumi Tövsiyələr</label>
-            <textarea id="generalComments" rows="4" placeholder="Güclü tərəflər və inkişaf sahələri..."></textarea>
-        </section>
-
-        <button type="button" onclick="calculate()">🚀 Hesabla & Nəticə</button>
-    </form>
-
-    <section id="result" class="result-section" style="display:none;">
-        <h2>📊 Nəticə Hesabatı</h2>
-        <div class="progress-container">
+        <div class="button-section">
+            <button onclick="calculate()">Hesabla & Nəticə</button>
+            <button onclick="copyResult()">Nəticəni Kopyala</button>
+        </div>
+        <div class="result-section" id="resultSection" style="display:none;">
+            <h2>Nəticə:</h2>
+            <p id="resultText"></p>
             <div class="progress-bar" id="progressBar"></div>
-            <span id="averageScore"></span>
         </div>
-        <pre id="output"></pre>
-        <div class="action-buttons">
-            <button onclick="copyResult()">📋 Kopyala</button>
-            <button onclick="printResult()">🖨️ Çap Et</button>
-            <button onclick="resetForm()">🔄 Yeni Dəyərləndirmə</button>
-        </div>
-    </section>
-</div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
